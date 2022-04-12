@@ -85,12 +85,17 @@ function findUserById(id) {
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    userToAdd['id'] = generateRandomID();
     addUser(userToAdd);
-    res.status(201).end();
+    res.status(201).send(userToAdd);
 });
 
 function addUser(user){
     users['users_list'].push(user);
+}
+
+function generateRandomID(){
+    return (Math.floor(Math.random() * 1000000)).toString();
 }
 
 app.delete('/users/:id', (req, res) => {
@@ -101,8 +106,8 @@ app.delete('/users/:id', (req, res) => {
     else {
         let result = removeUserById(id);
         result = { users_list: result };
-        res.send(result)
-        res.status(204).end();
+        //res.send(result)
+        res.status(204).send(result);
     }
     
 })

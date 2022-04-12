@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 function Form(props) {
     const [person, setPerson] = useState(
         {
+            id: "",
             name: "",
             job: "",
         }
@@ -12,17 +13,17 @@ function Form(props) {
         const { name, value } = event.target;
         if (name === "job")
             setPerson(
-                {name: person['name'], job: value}
+                {id: person['id'], name: person['name'], job: value}
             );
         else     
             setPerson(
-                {name: value, job: person['job']}   
+                {id: person['id'], name: value, job: person['job']}   
             );
     }
 
     function submitForm() {
         props.handleSubmit(person);
-        setPerson({name: '', job: ''});
+        setPerson({id: '', name: '', job: ''});
     }
 
     return (

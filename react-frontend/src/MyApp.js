@@ -7,18 +7,26 @@ function MyApp() {
     const [characters, setCharacters] = useState([]);  
 
     function removeOneCharacter (index) {
-        const updated = characters.filter((character, i) => {
-            return i !== index
+        const personToDelete = characters.find( (user, i) => i === index);
+        const deleteID = personToDelete['id'];
+        console.log(deleteID)
+        makeDeleteCall(deleteID).then( result => {
+            if (result && result.status === 204){
+                const updated = characters.filter((character, j) => {
+                    return j !== index;
+                });
+                setCharacters(updated);
+            }
+
         });
-        setCharacters(updated);
+        
     };
 
     function updateList(person) {
         makePostCall(person).then( result => {
             if (result && result.status === 201)
-                setCharacters([...characters, person]);
+                setCharacters([...characters, result.data]);
         });
-        <Form handleSubmit={updateList} />
     }
 
     async function fetchAll(){
@@ -49,7 +57,18 @@ function MyApp() {
             console.log(error);
             return false;
         }
-     }
+    }
+
+    async function makeDeleteCall(id){
+        try {
+            const response = await axios.delete(`http://localhost:5000/users/${id}`, id);
+            return response;
+        }
+        catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 
     return (
         <div className="container">
