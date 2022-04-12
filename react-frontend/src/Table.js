@@ -12,7 +12,7 @@ function TableHeader()  {
     );
   }
 
-  function TableBody(props) {
+function TableBody(props) {
     const rows = props.characterData.map((row, index) => {
         return (
           <tr key={index}>
@@ -25,14 +25,14 @@ function TableHeader()  {
         );
        }
       );
-      return (
-          <tbody>
+    return (
+        <tbody>
             {rows}
-           </tbody>
-       );
+        </tbody>
+    );
   }
 
-  function Table (props) {
+function Table (props) {
     return (
       <table>
         <TableHeader />
