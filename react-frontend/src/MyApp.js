@@ -19,6 +19,7 @@ function MyApp() {
                 setCharacters([...characters, person]);
         });
         
+
         <Form handleSubmit={updateList} />
     }
 
@@ -40,6 +41,7 @@ function MyApp() {
                 setCharacters(result);
         });
     }, [] );
+
 
     async function makePostCall(person){
         try {
