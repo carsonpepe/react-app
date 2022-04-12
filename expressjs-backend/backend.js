@@ -1,38 +1,40 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
 const users = { 
     users_list :
     [
-       { 
-          id : 'xyz789',
-          name : 'Charlie',
-          job: 'Janitor',
-       },
-       {
-          id : 'abc123', 
-          name: 'Mac',
-          job: 'Bouncer',
-       },
-       {
-          id : 'ppp222', 
-          name: 'Mac',
-          job: 'Professor',
-       }, 
-       {
-          id: 'yat999', 
-          name: 'Dee',
-          job: 'Aspring actress',
-       },
-       {
-          id: 'zap555', 
-          name: 'Dennis',
-          job: 'Bartender',
-       }
+        { 
+            id : 'xyz789',
+            name : 'Charlie',
+            job: 'Janitor',
+        },
+        {
+            id : 'abc123', 
+            name: 'Mac',
+            job: 'Bouncer',
+        },
+        {
+            id : 'ppp222', 
+            name: 'Mac',
+            job: 'Professor',
+        }, 
+        {
+            id: 'yat999', 
+            name: 'Dee',
+            job: 'Aspring actress',
+        },
+        {
+            id: 'zap555', 
+            name: 'Dennis',
+            job: 'Bartender',
+        }
     ]
  }
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/users', (req, res) => {
@@ -84,7 +86,7 @@ function findUserById(id) {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
-    res.status(200).end();
+    res.status(201).end();
 });
 
 function addUser(user){
