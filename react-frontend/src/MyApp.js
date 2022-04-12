@@ -18,8 +18,6 @@ function MyApp() {
             if (result && result.status === 201)
                 setCharacters([...characters, person]);
         });
-        
-
         <Form handleSubmit={updateList} />
     }
 
@@ -41,7 +39,6 @@ function MyApp() {
                 setCharacters(result);
         });
     }, [] );
-
 
     async function makePostCall(person){
         try {
